@@ -5,7 +5,7 @@
 }
 
 body {
-    width: 100vw;
+    max-width: 100vw;
     height: 100vh;
 }
 
@@ -131,7 +131,7 @@ nav p {
     color: #fff;
     text-decoration: none;
     font-weight: 500;
-    font-size: 0.8rem;
+    font-size: 0.7rem;
     letter-spacing: 0.5px;
     transition: color 0.2s, background 0.2s;
     padding: 6px 14px;
@@ -142,4 +142,104 @@ nav p {
 .categorias-nav a:hover {
     background: #E53935;
     color: #e0e0e0;
+}
+
+.produtos-lista {
+    display: flex;
+    gap: 32px;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 40px 60px;
+    flex-wrap: wrap;
+}
+
+.produto-item {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+    padding: 28px 32px;
+    min-width: 240px;
+    max-width: 300px;
+    margin-bottom: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.produto-item img {
+    width: 150px;
+    height: 100%;
+}
+
+.produto-item:hover {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+    transform: translateY(-4px) scale(1.02);
+}
+
+.produto-nome {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 8px;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+.produto-codigo {
+    font-size: 0.95rem;
+    color: #555;
+    margin-bottom: 18px;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+.produto-comprar {
+    background: #E53935;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 28px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, box-shadow 0.2s;
+    box-shadow: 0 2px 8px rgba(229, 57, 53, 0.08);
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+.produto-comprar:hover {
+    background: #c9403e;
+    box-shadow: 0 4px 16px rgba(229, 57, 53, 0.16);
+}
+
+.produtos-categoria {
+    display: flex;
+    gap: 32px;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 40px 60px;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+.produtos-categoria .titulo {
+    display: flex;
+    align-items: center;
+}
+
+.produtos-categoria .categoria-nome {
+    font-size: 14px;
+}
+
+.produtos-categoria .barra {
+    min-width: 60em;
+    max-width: 64em;
+    border-top: 2px solid #ccc;
+    margin-left: 10px;
+}
+
+.produtos-categoria .produtos {
+    display: flex;
+    max-width: 100%;
+    flex-wrap: wrap;
+    gap: 42px;
 }
