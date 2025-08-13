@@ -16,7 +16,7 @@ header {
     background: #fff;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
     border-radius: 0 0 16px 16px;
-    margin-bottom: 16px;
+    margin-bottom: 5px;
 }
 
 header a img {
@@ -56,7 +56,7 @@ header div {
 }
 
 #button-search {
-    padding: 0 24px;
+    padding: 0 10px;
     background: #E53935;
     color: #fff;
     border: none;
@@ -66,6 +66,16 @@ header div {
     transition: background 0.2s;
     font-weight: 500;
     height: 45px;
+    min-width: 20px;
+    max-width: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#button-search img {
+    width: 50%;
 }
 
 #button-search:hover {
@@ -228,6 +238,7 @@ nav p {
 
 .produtos-categoria .categoria-nome {
     font-size: 14px;
+    color: #00AEEF;
 }
 
 .produtos-categoria .barra {
@@ -242,4 +253,124 @@ nav p {
     max-width: 100%;
     flex-wrap: wrap;
     gap: 42px;
+}
+
+#whatssap-button {
+    width: 50px;
+    background-color: #23b659;
+    height: 50px;
+    border-radius: 50%;
+    border: 0px;
+    cursor: pointer;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    margin-right: 10px;
+    margin-bottom: 30px;
+}
+
+#whatssap-button:hover {
+    background-color: #147437;
+    scale: 1.05;
+}
+
+#whatssap-button img {
+    width: 60%;
+}
+
+.footer {
+    background-color: #f8f8f8;
+    padding: 40px 0 20px;
+    font-family: Arial, sans-serif;
+    color: #333;
+}
+
+/* Container principal */
+.footer-container {
+    max-width: 1200px;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+/* Cada seção do rodapé */
+.footer-section {
+    flex: 1;
+    margin: 10px;
+}
+
+.footer-section:last-child {
+    margin-left: -100px;
+}
+
+.footer-section h3 {
+    color: #00AEEF;
+    /* Azul da logo */
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+
+/* Listas */
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section ul li {
+    margin-bottom: 8px;
+    margin-top: 5px;
+}
+
+.footer-section ul li a {
+    display: flex;
+    text-decoration: none;
+    color: #333;
+    transition: 0.3s;
+    text-align: center;
+}
+
+.footer-section ul li a img {
+    width: 20px;
+    margin-right: 5px;
+}
+
+.footer-section ul li a:hover {
+    color: #E53935;
+    /* Vermelho da logo */
+}
+
+/* Logo */
+.footer-logo {
+    max-width: 150px;
+    margin-bottom: 15px;
+}
+
+/* Ícones de pagamento */
+.payment-icons {
+    max-width: 200px;
+}
+
+/* Parte inferior do rodapé */
+.footer-bottom {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+    color: #777;
+    border-top: 1px solid #ddd;
+    padding-top: 15px;
+}
+
+@media (min-width : 1440px) {
+    header {
+        margin-left: 10%;
+    }
+
+    main {
+        padding: 0px 12%;
+    }
+
+    #whatssap-button {
+        margin-right: 30px;
+    }
 }
