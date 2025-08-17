@@ -19,6 +19,10 @@ header {
     margin-bottom: 5px;
 }
 
+.bars {
+    display: none;
+}
+
 header a img {
     height: 64px;
     border-radius: 8px;
@@ -127,6 +131,10 @@ nav p {
     background: #00AEEF;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
     margin-bottom: 24px;
+}
+
+.menu {
+    display: none;
 }
 
 .categorias-nav {
@@ -372,5 +380,249 @@ nav p {
 
     #whatssap-button {
         margin-right: 30px;
+    }
+}
+
+@media (max-width : 600px) {
+    body {
+        overflow-x: hidden !important;
+    }
+
+    header {
+        display: flex;
+        padding: 24px 0px;
+        justify-content: space-between;
+        border-radius: 0px;
+        box-shadow: 10px 2px 18px rgba(0, 0, 0, 0.3);
+        margin-left: -10px;
+    }
+
+    .bars {
+        display: flex;
+        flex-direction: column;
+        width: 50px;
+        height: 50px;
+        position: absolute;
+        margin-left: 40px;
+        margin-bottom: 50px;
+    }
+
+    .bar {
+        width: 100%;
+        margin-top: 10px;
+        background-color: #bbb;
+    }
+
+    header div {
+        margin: 0px;
+    }
+
+    header .inputs {
+        display: flex;
+        flex-direction: column;
+        padding: 0px;
+    }
+
+    header a img {
+        margin-left: 30px;
+        margin-bottom: 30px;
+        width: 120px;
+    }
+
+    #search-input {
+        margin-left: 0px;
+        width: 70%
+    }
+
+    #button-search {
+        position: absolute;
+        margin-top: 97px;
+        margin-left: 350px;
+    }
+
+    nav {
+        display: none;
+    }
+
+    .categorias-bar {
+        position: fixed;
+        width: 70%;
+        color: #000;
+        top: 0;
+        height: 100%;
+        background: #eff;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease-in-out;
+        scroll-behavior: auto;
+        padding: 0px;
+        z-index: 999;
+    }
+
+    .categorias-nav {
+        margin-top: 30px;
+        flex-direction: column;
+    }
+
+    .categorias-nav a {
+        color: #333;
+        font-size: 15px;
+    }
+
+    .menu {
+        display: flex;
+        align-items: center;
+        padding: 10px;
+        justify-content: space-between;
+    }
+
+    .menu p {
+        font-size: 22px;
+        color: #333;
+        margin-left: -60%;
+    }
+
+    .menu .bars-menu {
+        display: flex;
+        flex-direction: column;
+        width: 15px;
+        height: 20px;
+        justify-content: center;
+
+    }
+
+    .menu .bars-menu .bar {
+        width: 100%;
+        height: 3px;
+        background-color: #333;
+        margin-top: 2px;
+    }
+
+    .menu img {
+        width: 25px;
+    }
+
+    .produtos-categoria .barra {
+        min-width: 100%;
+        max-width: 50%;
+    }
+
+    .produto-item {
+        min-width: 100px;
+        max-width: 130px;
+        height: 350px;
+        text-align: center;
+    }
+
+    .produto-item h2 {
+        font-size: 1rem;
+    }
+
+    .produto-item img {
+        width: 120px;
+        height: 100%;
+    }
+
+    .produto-comprar {
+        font-size: 0.9rem;
+    }
+
+    .footer-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer-section ul {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer-section:last-child {
+        margin-left: 0px;
+    }
+
+}
+
+@media (max-width : 424px) {
+    .bars {
+        margin-left: 20px;
+    }
+
+    .menu p {
+        font-size: 22px;
+        color: #333;
+        margin-left: -50%;
+    }
+
+    .bar {
+        width: 90%;
+    }
+
+    #search-input {
+        font-size: 14px;
+    }
+
+    #button-search {
+        margin-left: 310px;
+        height: 43px;
+    }
+
+    .produtos-lista {
+        padding: 40px 40px;
+    }
+
+    .produtos-categoria {
+        padding: 40px 34px;
+    }
+}
+
+@media (max-width : 370px) {
+    #button-search {
+        margin-left: 270px;
+        height: 42px;
+    }
+
+    .menu p {
+        margin-left: -40%;
+        font-size: 20px;
+    }
+
+    #search-input {
+        font-size: 13px;
+    }
+
+    .produto-item {
+        min-width: 80px;
+        max-width: 120px;
+    }
+
+    .produto-item img {
+        width: 100px;
+    }
+
+    .produto-item h2 {
+        font-size: 0.75rem;
+    }
+
+    .produto-codigo {
+        font-size: 0.70rem;
+    }
+
+    .produto-comprar {
+        font-size: 0.7rem;
+    }
+
+    .produtos-lista {
+        padding: 40px 20px;
+    }
+
+    .produtos-categoria {
+        padding: 40px 19px;
+    }
+
+    .categorias-nav a {
+        font-size: 12px;
+        justify-content: center;
     }
 }
