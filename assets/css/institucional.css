@@ -202,6 +202,29 @@ nav p {
     margin-bottom: 8px;
 }
 
+#whatssap-button {
+    width: 50px;
+    background-color: #23b659;
+    height: 50px;
+    border-radius: 50%;
+    border: 0px;
+    cursor: pointer;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    margin-right: 10px;
+    margin-bottom: 30px;
+}
+
+#whatssap-button:hover {
+    background-color: #147437;
+    scale: 1.05;
+}
+
+#whatssap-button img {
+    width: 60%;
+}
+
 .footer {
     background-color: #f8f8f8;
     padding: 40px 0 20px;
@@ -283,4 +306,18 @@ nav p {
     color: #777;
     border-top: 1px solid #ddd;
     padding-top: 15px;
+}
+
+@media (min-width : 1440px) {
+    header {
+        margin-left: 10%;
+    }
+
+    main {
+        padding: 10px 15%;
+    }
+
+    #whatssap-button {
+        margin-right: 30px;
+    }
 }
