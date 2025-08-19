@@ -290,6 +290,66 @@ nav p {
     margin-bottom: 8px;
 }
 
+.privacy-policy-main {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 60vh;
+    background: #fafbfc;
+    padding: 48px 0;
+    width: 100%;
+}
+
+.privacy-policy-section {
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.07);
+    padding: 40px 48px;
+    max-width: 700px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.privacy-policy-section h1 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #00AEEF;
+    margin-bottom: 24px;
+    text-align: left;
+    letter-spacing: 1px;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+.privacy-policy-section h2 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #E53935;
+    margin-top: 28px;
+    margin-bottom: 10px;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+.privacy-policy-section p {
+    font-size: 1.1rem;
+    color: #333;
+    line-height: 1.7;
+    margin-bottom: 8px;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+.privacy-policy-section a {
+    color: #00AEEF;
+    text-decoration: underline;
+    transition: color 0.2s;
+    word-break: break-all;
+}
+
+.privacy-policy-section a:hover {
+    color: #E53935;
+}
+
 #whatssap-button {
     width: 50px;
     background-color: #23b659;
@@ -469,6 +529,23 @@ nav p {
         flex-wrap: wrap;
     }
 
+    .privacy-policy-section {
+        padding: 32px 18px;
+        max-width: 98vw;
+    }
+
+    .privacy-policy-section h1 {
+        font-size: 1.7rem;
+    }
+
+    .privacy-policy-section h2 {
+        font-size: 1.1rem;
+    }
+
+    .privacy-policy-section p {
+        font-size: 1rem;
+    }
+
     .footer-logo {
         width: 120px;
     }
@@ -616,6 +693,30 @@ nav p {
     .whatsapp-btn img {
         width: 22px;
         height: 22px;
+    }
+
+    .privacy-policy-main {
+        padding: 24px 0;
+    }
+
+    .privacy-policy-section {
+        padding: 18px 6px;
+        border-radius: 12px;
+    }
+
+    .privacy-policy-section h1 {
+        font-size: 1.3rem;
+        margin-bottom: 16px;
+    }
+
+    .privacy-policy-section h2 {
+        font-size: 1rem;
+        margin-top: 18px;
+        margin-bottom: 6px;
+    }
+
+    .privacy-policy-section p {
+        font-size: 0.95rem;
     }
 
     .footer-container {
