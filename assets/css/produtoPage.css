@@ -7,6 +7,7 @@
 body {
     max-width: 100vw;
     height: 100vh;
+    overflow-x: hidden !important;
 }
 
 header {
@@ -364,16 +365,310 @@ nav p {
     padding-top: 15px;
 }
 
-@media (min-width : 1440px) {
-    header {
-        margin-left: 10%;
-    }
-
+@media (min-width : 1700px) {
     main {
         padding: 10px 15%;
     }
 
+    header {
+        padding: 10px 20%;
+    }
+
     #whatssap-button {
         margin-right: 30px;
+    }
+}
+
+@media (max-width : 1699px) {
+    body {
+        overflow-x: hidden;
+    }
+
+    header {
+        padding: 23px 120px;
+    }
+
+    #button-search {
+        min-width: 50px;
+    }
+
+    nav p {
+        font-size: 13px;
+        margin-right: -20px;
+    }
+
+    .produtos-categoria .barra {
+        min-width: 50em;
+    }
+
+    .footer-section h3 {
+        font-size: 16px;
+    }
+
+    .footer-section ul li a {
+        text-align: start;
+    }
+
+    .footer-logo {
+        max-width: 135px;
+    }
+}
+
+@media (max-width : 1300px) {
+    body {
+        overflow-x: hidden;
+    }
+
+    header {
+        margin-left: 0px;
+        padding: 30px 60px;
+        display: flex;
+    }
+
+    header a img {
+        margin-left: -40px;
+    }
+
+    #search-input {
+        margin-left: 40px;
+    }
+
+    .categorias-nav {
+        width: 90%;
+        flex-wrap: wrap;
+    }
+
+    .footer-logo {
+        width: 120px;
+    }
+
+    .footer-section h3 {
+        font-size: 14px;
+    }
+
+    .footer-section ul li {
+        font-size: 12px;
+    }
+
+    .footer-section:last-child {
+        margin-left: 0px;
+    }
+}
+
+@media (max-width : 600px) {
+    header {
+        display: flex;
+        padding: 24px 0px;
+        justify-content: space-between;
+        border-radius: 0px;
+        box-shadow: 10px 2px 18px rgba(0, 0, 0, 0.3);
+    }
+
+    .bars {
+        display: flex;
+        flex-direction: column;
+        width: 50px;
+        height: 50px;
+        position: absolute;
+        margin-left: 40px;
+        margin-bottom: 50px;
+    }
+
+    .bar {
+        width: 100%;
+        margin-top: 10px;
+        background-color: #bbb;
+    }
+
+    header div {
+        margin: 0px;
+    }
+
+    header .inputs {
+        display: flex;
+        flex-direction: column;
+        padding: 0px;
+    }
+
+    header a img {
+        margin-left: 30px;
+        margin-bottom: 30px;
+        width: 120px;
+    }
+
+    #search-input {
+        margin-left: 0px;
+        width: 70%
+    }
+
+    #button-search {
+        position: absolute;
+        margin-top: 97px;
+        margin-left: 350px;
+    }
+
+    nav {
+        display: none;
+    }
+
+    .categorias-bar {
+        position: fixed;
+        width: 70%;
+        color: #000;
+        top: 0;
+        height: 100%;
+        background: #eff;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease-in-out;
+        scroll-behavior: auto;
+        padding: 0px;
+        z-index: 999;
+    }
+
+    .categorias-nav {
+        margin-top: 30px;
+        flex-direction: column;
+    }
+
+    .categorias-nav a {
+        color: #333;
+        font-size: 15px;
+    }
+
+    .menu {
+        display: flex;
+        align-items: center;
+        padding: 10px;
+        justify-content: space-between;
+    }
+
+    .menu p {
+        font-size: 22px;
+        color: #333;
+        margin-left: -60%;
+    }
+
+    .menu .bars-menu {
+        display: flex;
+        flex-direction: column;
+        width: 15px;
+        height: 20px;
+        justify-content: center;
+
+    }
+
+    .menu .bars-menu .bar {
+        width: 100%;
+        height: 3px;
+        background-color: #333;
+        margin-top: 2px;
+    }
+
+    .menu img {
+        width: 25px;
+    }
+
+    .produto-unico {
+        padding: 32px 0;
+    }
+
+    .produto-container {
+        flex-direction: column;
+        gap: 24px;
+        padding: 24px 16px;
+        max-width: 98vw;
+        align-items: stretch;
+    }
+
+    .produto-imagem {
+        min-width: 0;
+        max-width: 100%;
+        margin-bottom: 16px;
+    }
+
+    .produto-imagem img {
+        max-width: 220px;
+    }
+
+    .produto-info {
+        width: 100%;
+        align-items: flex-start;
+    }
+
+    .produto-nome {
+        font-size: 1.5rem;
+    }
+
+    .botao-comprar {
+        width: 100%;
+        padding: 12px 0;
+        font-size: 1rem;
+    }
+
+    .footer-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer-section ul {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer-section:last-child {
+        margin-left: 0px;
+    }
+
+}
+
+@media (max-width : 424px) {
+    .bars {
+        margin-left: 20px;
+    }
+
+    .menu p {
+        font-size: 22px;
+        color: #333;
+        margin-left: -50%;
+    }
+
+    .bar {
+        width: 90%;
+    }
+
+    #search-input {
+        font-size: 14px;
+    }
+
+    #button-search {
+        margin-left: 310px;
+        height: 43px;
+    }
+}
+
+@media (max-width : 370px) {
+    #button-search {
+        margin-left: 270px;
+        height: 42px;
+    }
+
+    header {
+        box-shadow: 0px 0px 0px;
+    }
+
+    .menu p {
+        margin-left: -40%;
+        font-size: 20px;
+    }
+
+    #search-input {
+        font-size: 13px;
+    }
+
+    .categorias-nav a {
+        font-size: 12px;
+        justify-content: center;
     }
 }
