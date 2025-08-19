@@ -172,6 +172,93 @@ nav p {
     padding: 48px 0;
 }
 
+.how-to-buy {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 50vh;
+    background: #fafbfc;
+    padding: 48px 0;
+}
+
+.instructions {
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.07);
+    padding: 40px 48px;
+    max-width: 700px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.instructions h1 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #00AEEF;
+    margin-bottom: 24px;
+    text-align: center;
+    letter-spacing: 1px;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+.instructions ol {
+    margin: 0 0 24px 0;
+    padding-left: 20px;
+    font-size: 1.15rem;
+    color: #333;
+    line-height: 1.7;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+.instructions ol li {
+    margin-bottom: 18px;
+}
+
+.instructions ol li strong {
+    color: #E53935;
+    font-weight: 600;
+}
+
+.instructions ol li p {
+    margin: 6px 0 0 0;
+    color: #333;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.contact-buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 18px;
+    width: 100%;
+}
+
+.whatsapp-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #23b659;
+    color: #fff;
+    font-weight: 600;
+    font-size: 1.1rem;
+    text-decoration: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    transition: background 0.2s;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.whatsapp-btn img {
+    width: 28px;
+    height: 28px;
+}
+
+.whatsapp-btn:hover {
+    background: #147437;
+}
+
 .about-section {
     background: #fff;
     border-radius: 18px;
@@ -510,6 +597,25 @@ nav p {
 
     .menu img {
         width: 25px;
+    }
+
+    .instructions {
+        padding: 24px 10px;
+        max-width: 98vw;
+    }
+
+    .instructions h1 {
+        font-size: 1.5rem;
+    }
+
+    .whatsapp-btn {
+        font-size: 1rem;
+        padding: 10px 16px;
+    }
+
+    .whatsapp-btn img {
+        width: 22px;
+        height: 22px;
     }
 
     .footer-container {
