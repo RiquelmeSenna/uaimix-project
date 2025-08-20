@@ -163,193 +163,6 @@ nav p {
     color: #e0e0e0;
 }
 
-.who-we-are {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 50vh;
-    background: #fafbfc;
-    padding: 48px 0;
-}
-
-.how-to-buy {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 50vh;
-    background: #fafbfc;
-    padding: 48px 0;
-}
-
-.instructions {
-    background: #fff;
-    border-radius: 18px;
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.07);
-    padding: 40px 48px;
-    max-width: 700px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.instructions h1 {
-    font-size: 2.2rem;
-    font-weight: 700;
-    color: #00AEEF;
-    margin-bottom: 24px;
-    text-align: center;
-    letter-spacing: 1px;
-    font-family: 'Segoe UI', Arial, sans-serif;
-}
-
-.instructions ol {
-    margin: 0 0 24px 0;
-    padding-left: 20px;
-    font-size: 1.15rem;
-    color: #333;
-    line-height: 1.7;
-    font-family: 'Segoe UI', Arial, sans-serif;
-}
-
-.instructions ol li {
-    margin-bottom: 18px;
-}
-
-.instructions ol li strong {
-    color: #E53935;
-    font-weight: 600;
-}
-
-.instructions ol li p {
-    margin: 6px 0 0 0;
-    color: #333;
-    font-size: 1rem;
-    line-height: 1.5;
-}
-
-.contact-buttons {
-    display: flex;
-    justify-content: center;
-    margin-top: 18px;
-    width: 100%;
-}
-
-.whatsapp-btn {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    background: #23b659;
-    color: #fff;
-    font-weight: 600;
-    font-size: 1.1rem;
-    text-decoration: none;
-    padding: 12px 24px;
-    border-radius: 8px;
-    transition: background 0.2s;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-}
-
-.whatsapp-btn img {
-    width: 28px;
-    height: 28px;
-}
-
-.whatsapp-btn:hover {
-    background: #147437;
-}
-
-.about-section {
-    background: #fff;
-    border-radius: 18px;
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.07);
-    padding: 40px 48px;
-    max-width: 700px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.about-section h1 {
-    font-size: 2.2rem;
-    font-weight: 700;
-    color: #00AEEF;
-    margin-bottom: 24px;
-    text-align: center;
-    letter-spacing: 1px;
-    font-family: 'Segoe UI', Arial, sans-serif;
-}
-
-.about-content {
-    font-size: 1.15rem;
-    color: #333;
-    line-height: 1.7;
-    text-align: center;
-    font-family: 'Segoe UI', Arial, sans-serif;
-    margin-bottom: 8px;
-}
-
-.privacy-policy-main {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    min-height: 60vh;
-    background: #fafbfc;
-    padding: 48px 0;
-    width: 100%;
-}
-
-.privacy-policy-section {
-    background: #fff;
-    border-radius: 18px;
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.07);
-    padding: 40px 48px;
-    max-width: 700px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-}
-
-.privacy-policy-section h1 {
-    font-size: 2.2rem;
-    font-weight: 700;
-    color: #00AEEF;
-    margin-bottom: 24px;
-    text-align: left;
-    letter-spacing: 1px;
-    font-family: 'Segoe UI', Arial, sans-serif;
-}
-
-.privacy-policy-section h2 {
-    font-size: 1.3rem;
-    font-weight: 600;
-    color: #E53935;
-    margin-top: 28px;
-    margin-bottom: 10px;
-    font-family: 'Segoe UI', Arial, sans-serif;
-}
-
-.privacy-policy-section p {
-    font-size: 1.1rem;
-    color: #333;
-    line-height: 1.7;
-    margin-bottom: 8px;
-    font-family: 'Segoe UI', Arial, sans-serif;
-}
-
-.privacy-policy-section a {
-    color: #00AEEF;
-    text-decoration: underline;
-    transition: color 0.2s;
-    word-break: break-all;
-}
-
-.privacy-policy-section a:hover {
-    color: #E53935;
-}
-
 #whatssap-button {
     width: 50px;
     background-color: #23b659;
@@ -373,91 +186,91 @@ nav p {
     width: 60%;
 }
 
-.exchange-return-policy {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    min-height: 60vh;
-    background: #fafbfc;
-    padding: 48px 0;
-    width: 100%;
+.category-products {
+    max-width: 1200px;
+    margin: 40px auto 60px auto;
+    padding: 0 24px;
+    font-family: 'Segoe UI', Arial, sans-serif;
 }
 
-.policy-header {
+.category-header {
+    margin-bottom: 32px;
+    text-align: left;
+}
+
+.category-header h2 {
+    font-size: 2rem;
+    color: #00AEEF;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 0;
+}
+
+.products-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 32px;
+}
+
+.product-card {
     background: #fff;
-    border-radius: 18px 18px 0 0;
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.07);
-    padding: 32px 48px 24px 48px;
-    max-width: 700px;
-    width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+    padding: 24px 18px 18px 18px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    transition: box-shadow 0.2s, transform 0.2s;
+    min-height: 340px;
 }
 
-.policy-header h1 {
-    font-size: 2.2rem;
-    font-weight: 700;
-    color: #00AEEF;
-    margin-bottom: 12px;
-    text-align: center;
-    letter-spacing: 1px;
-    font-family: 'Segoe UI', Arial, sans-serif;
+.product-card:hover {
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.12);
+    transform: translateY(-4px) scale(1.03);
 }
 
-.policy-header p {
-    font-size: 1.15rem;
-    color: #333;
-    text-align: center;
-    font-family: 'Segoe UI', Arial, sans-serif;
+.product-card img {
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+    border-radius: 8px;
+    margin-bottom: 18px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    background: #f8f8f8;
 }
 
-.policy-content {
-    background: #fff;
-    border-radius: 0 0 18px 18px;
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.07);
-    padding: 32px 48px;
-    max-width: 700px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-}
-
-.policy-content h2 {
-    font-size: 1.3rem;
-    font-weight: 600;
-    color: #E53935;
-    margin-top: 28px;
-    margin-bottom: 10px;
-    font-family: 'Segoe UI', Arial, sans-serif;
-}
-
-.policy-content ul,
-.policy-content ol {
-    margin: 0 0 18px 20px;
-    padding-left: 0;
+.product-card h3 {
     font-size: 1.1rem;
     color: #333;
-    line-height: 1.7;
-    font-family: 'Segoe UI', Arial, sans-serif;
-}
-
-.policy-content ul li,
-.policy-content ol li {
-    margin-bottom: 12px;
-}
-
-.policy-content ol li strong {
-    color: #00AEEF;
     font-weight: 600;
+    margin-bottom: 8px;
+    text-align: center;
 }
 
-.policy-content p {
-    font-size: 1.1rem;
-    color: #333;
-    margin-top: 10px;
-    font-family: 'Segoe UI', Arial, sans-serif;
+.product-card p {
+    font-size: 0.95rem;
+    color: #555;
+    margin-bottom: 4px;
+    text-align: center;
+}
+
+.buy-button {
+    background-color: #E53935;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 24px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+    margin-top: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+}
+
+.buy-button:hover {
+    background-color: #c9403e;
+    transform: scale(1.04);
 }
 
 .footer {
@@ -575,10 +388,6 @@ nav p {
         margin-right: -20px;
     }
 
-    .produtos-categoria .barra {
-        min-width: 50em;
-    }
-
     .footer-section h3 {
         font-size: 16px;
     }
@@ -616,46 +425,27 @@ nav p {
         flex-wrap: wrap;
     }
 
-    .privacy-policy-section {
-        padding: 32px 18px;
-        max-width: 98vw;
+    .category-products {
+        padding: 0 8px;
     }
 
-    .privacy-policy-section h1 {
-        font-size: 1.7rem;
+    .products-list {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 18px;
     }
 
-    .privacy-policy-section h2 {
-        font-size: 1.1rem;
+    .product-card {
+        padding: 16px 8px;
+        min-height: 260px;
     }
 
-    .privacy-policy-section p {
-        font-size: 1rem;
+    .product-card img {
+        width: 90px;
+        height: 90px;
     }
 
-    .exchange-return-policy {
-        padding: 24px 0;
-    }
-
-    .policy-header,
-    .policy-content {
-        padding: 18px 10px;
-        max-width: 98vw;
-        border-radius: 12px;
-    }
-
-    .policy-header h1 {
-        font-size: 1.7rem;
-    }
-
-    .policy-content h2 {
-        font-size: 1.1rem;
-    }
-
-    .policy-content ul,
-    .policy-content ol,
-    .policy-content p {
-        font-size: 1rem;
+    .category-header h2 {
+        font-size: 1.3rem;
     }
 
     .footer-logo {
@@ -788,78 +578,29 @@ nav p {
         width: 25px;
     }
 
-    .instructions {
-        padding: 24px 10px;
-        max-width: 98vw;
+    .category-products {
+        margin: 20px 0 40px 0;
+        padding: 0 2px;
     }
 
-    .instructions h1 {
-        font-size: 1.5rem;
+    .products-list {
+        grid-template-columns: 1fr;
+        gap: 14px;
     }
 
-    .whatsapp-btn {
-        font-size: 1rem;
-        padding: 10px 16px;
-    }
-
-    .whatsapp-btn img {
-        width: 22px;
-        height: 22px;
-    }
-
-    .privacy-policy-main {
-        padding: 24px 0;
-    }
-
-    .privacy-policy-section {
-        padding: 18px 6px;
-        border-radius: 12px;
-    }
-
-    .privacy-policy-section h1 {
-        font-size: 1.3rem;
-        margin-bottom: 16px;
-    }
-
-    .privacy-policy-section h2 {
-        font-size: 1rem;
-        margin-top: 18px;
-        margin-bottom: 6px;
-    }
-
-    .privacy-policy-section p {
-        font-size: 0.95rem;
-    }
-
-    .exchange-return-policy {
-        padding: 12px 0;
-    }
-
-    .policy-header,
-    .policy-content {
+    .product-card {
+        min-height: 180px;
         padding: 12px 4px;
-        border-radius: 10px;
     }
 
-    .policy-header h1 {
-        font-size: 1.3rem;
-        margin-bottom: 8px;
+    .product-card img {
+        width: 70px;
+        height: 70px;
     }
 
-    .policy-header p {
-        font-size: 1rem;
-    }
-
-    .policy-content h2 {
-        font-size: 1rem;
-        margin-top: 14px;
-        margin-bottom: 6px;
-    }
-
-    .policy-content ul,
-    .policy-content ol,
-    .policy-content p {
-        font-size: 0.95rem;
+    .category-header h2 {
+        font-size: 1.1rem;
+        text-align: center;
     }
 
     .footer-container {
