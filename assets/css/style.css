@@ -184,11 +184,12 @@ nav p {
     flex-direction: column;
     align-items: center;
     transition: box-shadow 0.2s, transform 0.2s;
+    height: 375px;
 }
 
 .produto-item img {
     width: 150px;
-    height: 100%;
+    height: 200px;
 }
 
 .produto-item:hover {
@@ -220,9 +221,11 @@ nav p {
     font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
+    position: absolute;
     transition: background 0.2s, box-shadow 0.2s;
     box-shadow: 0 2px 8px rgba(229, 57, 53, 0.08);
     font-family: 'Segoe UI', Arial, sans-serif;
+    margin-top: 285px;
 }
 
 .produto-comprar:hover {
@@ -449,7 +452,6 @@ nav p {
 
     .produto-item {
         width: 240px !important;
-        height: 350px;
     }
 
     .produtos {
@@ -604,16 +606,17 @@ nav p {
     }
 
     .produto-item h2 {
-        font-size: 1rem;
+        font-size: 0.7rem;
     }
 
     .produto-item img {
         width: 120px;
-        height: 100%;
+        height: 150px;
     }
 
     .produto-comprar {
         font-size: 0.9rem;
+        margin-top: 250px;
     }
 
     .footer-container {

@@ -18,4 +18,125 @@ exit.addEventListener('click', () => {
     }, 25)
 })
 
-//box-shadow: 140px 0px 0px rgba(0, 0, 0, 0.7);
+function renderCategoriasNav(categorias) {
+    let categoriasNav = document.querySelector('.categorias-nav')
+    categoriasNav.innerHTML = ""
+
+    categorias.forEach(categoria => {
+        let link = document.createElement('a')
+        link.href = "./html/categoryPage.html"
+        link.textContent = categoria
+        categoriasNav.appendChild(link)
+    })
+}
+
+
+function shuffleArray(array) {
+    return array
+        .map(value => ({ value, sort: Math.random() }))
+        .sort((a, b) => a.sort - b.sort)
+        .map(({ value }) => value);
+}
+
+async function addNewProduct() {
+    const url = 'https://api.zerosheets.com/v1/jai'
+    const response = await fetch(url)
+    const products = await response.json()
+
+    let productlist = document.querySelector('.produtos-lista')
+    let productsCategory = document.querySelector('.produtos-categoria')
+
+
+    let categoriasUnicas = [...new Set(products.map(p => p.categoria))]
+
+    renderCategoriasNav(categoriasUnicas)
+
+
+    categoriasUnicas.forEach(categoria => {
+        let divTitulo = document.createElement('div')
+        divTitulo.classList.add('titulo')
+
+        let h3 = document.createElement('h3')
+        h3.classList.add('categoria-nome')
+        h3.innerHTML = categoria
+
+        let bar = document.createElement('div')
+        bar.classList.add('barra')
+
+        divTitulo.appendChild(h3)
+        divTitulo.appendChild(bar)
+
+
+        let produtosDiv = document.createElement('div')
+        produtosDiv.classList.add('produtos')
+        produtosDiv.setAttribute('data-categoria', categoria)
+
+        productsCategory.appendChild(divTitulo)
+        productsCategory.appendChild(produtosDiv)
+    })
+
+    let produtosAleatorios = shuffleArray(products).slice(0, 6)
+
+    produtosAleatorios.forEach(product => {
+        let productItem = document.createElement('div')
+        productItem.classList.add('produto-item')
+
+        let img = document.createElement('img')
+        img.src = product.imagemUrl
+
+        let h2 = document.createElement('h2')
+        h2.classList.add('produto-nome')
+        h2.innerHTML = product.nome
+
+        let p = document.createElement('p')
+        p.classList.add('produto-codigo')
+        p.innerHTML = `Código: ${product.codigo}`
+
+        let button = document.createElement('button')
+        button.classList.add('produto-comprar')
+        button.innerHTML = 'Comprar'
+
+        productItem.appendChild(img)
+        productItem.appendChild(h2)
+        productItem.appendChild(p)
+        productItem.appendChild(button)
+
+        productlist.appendChild(productItem)
+    })
+
+    categoriasUnicas.forEach(categoria => {
+        let categoriaDiv = document.querySelector(`.produtos[data-categoria="${categoria}"]`)
+
+        let produtosDaCategoria = products.filter(p => p.categoria === categoria)
+        let embaralhados = shuffleArray(produtosDaCategoria)
+
+        embaralhados.forEach(product => {
+            let productItem = document.createElement('div')
+            productItem.classList.add('produto-item')
+
+            let img = document.createElement('img')
+            img.src = product.imagemUrl
+
+            let h2 = document.createElement('h2')
+            h2.classList.add('produto-nome')
+            h2.innerHTML = product.nome
+
+            let p = document.createElement('p')
+            p.classList.add('produto-codigo')
+            p.innerHTML = `Código: ${product.codigo}`
+
+            let button = document.createElement('button')
+            button.classList.add('produto-comprar')
+            button.innerHTML = 'Comprar'
+
+            productItem.appendChild(img)
+            productItem.appendChild(h2)
+            productItem.appendChild(p)
+            productItem.appendChild(button)
+
+            categoriaDiv.appendChild(productItem)
+        })
+    })
+}
+
+addNewProduct()
