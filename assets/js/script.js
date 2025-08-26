@@ -21,13 +21,41 @@ exit.addEventListener('click', () => {
 function renderCategoriasNav(categorias) {
     let categoriasNav = document.querySelector('.categorias-nav')
     categoriasNav.innerHTML = ""
+    let categoriesFooter = document.querySelectorAll('.footer-section ul')[1]
+    categoriesFooter.innerHTML = ''
+
+
 
     categorias.forEach(categoria => {
         let link = document.createElement('a')
         link.href = "./html/categoryPage.html"
         link.textContent = categoria
+
+        let linkFooter = document.createElement('li')
+        let a = document.createElement('a')
+        a.href = "./html/categoryPage.html"
+        a.textContent = categoria
+
+        linkFooter.appendChild(a)
+
+
+        link.addEventListener('click', (e) => {
+            e.preventDefault()
+            localStorage.setItem('categoriaSelecionada', categoria)
+            window.location.href = './html/categoryPage.html'
+        })
+
+        a.addEventListener('click', (e) => {
+            e.preventDefault()
+            localStorage.setItem('categoriaSelecionada', categoria)
+            window.location.href = './html/categoryPage.html'
+        })
+
         categoriasNav.appendChild(link)
+        categoriesFooter.appendChild(linkFooter)
+
     })
+
 }
 
 
@@ -39,7 +67,7 @@ function shuffleArray(array) {
 }
 
 async function addNewProduct() {
-    const url = 'https://api.zerosheets.com/v1/jai'
+    const url = 'https://sheetdb.io/api/v1/ppt72dz0c8neo'
     const response = await fetch(url)
     const products = await response.json()
 
