@@ -74,45 +74,30 @@ async function loadCategoryProducts() {
         productlist.innerHTML = `<p>Nenhum produto encontrado em <strong>${categoriaSelecionada}</strong>.</p>`
         return
     }
+}
 
-    produtosDaCategoria.forEach(product => {
-        let Title = document.querySelector('.category-header h2').innerHTML = product.categoria
+function loadProductUnique() {
+    let product = JSON.parse(localStorage.getItem('produtoSelecionado'))
 
-        let productItem = document.createElement('div')
-        productItem.classList.add('product-card')
 
-        let img = document.createElement('img')
-        img.src = product.imagemUrl
 
-        let h3 = document.createElement('h3')
-        h3.innerHTML = product.nome
+    let titleProduct = document.querySelector('.produto-nome')
+    let titleImg = document.querySelector('.produto-imagem img')
+    let ManufacturerCode = document.querySelectorAll('.produto-detalhes li')[0]
+    let productBrand = document.querySelectorAll('.produto-detalhes li')[1]
+    let productCategory = document.querySelectorAll('.produto-detalhes li')[2]
+    let productDescription = document.querySelectorAll('.produto-detalhes li')[3]
 
-        let pBrand = document.createElement('p')
-        pBrand.classList.add('brand')
-        pBrand.innerHTML = `Marca: ${product.marca}`
 
-        console.log(product)
-        let p = document.createElement('p')
-        p.innerHTML = `Código: ${product.codigo}`
-
-        let button = document.createElement('button')
-        button.classList.add('buy-button')
-        button.innerHTML = 'Comprar'
-
-        button.addEventListener('click', () => {
-            localStorage.setItem('produtoSelecionado', JSON.stringify(product))
-            window.location.href = './produtoPage.html'
-        })
-
-        productItem.appendChild(img)
-        productItem.appendChild(h3)
-        productItem.appendChild(pBrand)
-        productItem.appendChild(p)
-        productItem.appendChild(button)
-
-        productlist.appendChild(productItem)
-    })
+    console.log(product)
+    titleProduct.innerHTML = product.nome
+    titleImg.src = product.imagemUrl
+    ManufacturerCode.innerHTML = `<li><strong>Código do Fabricante:</strong> ${product.codigo}</li> `
+    productBrand.innerHTML = `<li><strong>Marca:</strong> ${product.marca}</li> `
+    productCategory.innerHTML = `<li><strong>Categoria:</strong> ${product.categoria}</li>`
+    productDescription.innerHTML = `<li><strong>Descrição:</strong> ${product.descricao}</li>`
 
 }
 
 loadCategoryProducts()
+loadProductUnique()

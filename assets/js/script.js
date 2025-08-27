@@ -124,12 +124,17 @@ async function addNewProduct() {
         button.classList.add('produto-comprar')
         button.innerHTML = 'Comprar'
 
+        button.addEventListener('click', () => {
+            localStorage.setItem('produtoSelecionado', JSON.stringify(product))
+            window.location.href = './html/produtoPage.html'
+        })
         productItem.appendChild(img)
         productItem.appendChild(h2)
         productItem.appendChild(p)
         productItem.appendChild(button)
 
         productlist.appendChild(productItem)
+
     })
 
     categoriasUnicas.forEach(categoria => {
@@ -156,6 +161,11 @@ async function addNewProduct() {
             let button = document.createElement('button')
             button.classList.add('produto-comprar')
             button.innerHTML = 'Comprar'
+
+            button.addEventListener('click', () => {
+                localStorage.setItem('produtoSelecionado', JSON.stringify(product))
+                window.location.href = './html/produtoPage.html'
+            })
 
             productItem.appendChild(img)
             productItem.appendChild(h2)
