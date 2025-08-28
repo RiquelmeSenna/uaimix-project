@@ -88,16 +88,41 @@ function loadProductUnique() {
     let productCategory = document.querySelectorAll('.produto-detalhes li')[2]
     let productDescription = document.querySelectorAll('.produto-detalhes li')[3]
 
-
-    console.log(product)
     titleProduct.innerHTML = product.nome
     titleImg.src = product.imagemUrl
     ManufacturerCode.innerHTML = `<li><strong>Código do Fabricante:</strong> ${product.codigo}</li> `
     productBrand.innerHTML = `<li><strong>Marca:</strong> ${product.marca}</li> `
     productCategory.innerHTML = `<li><strong>Categoria:</strong> ${product.categoria}</li>`
     productDescription.innerHTML = `<li><strong>Descrição:</strong> ${product.descricao}</li>`
-
 }
+
+function enviarWhatssapp(mensagem = "Olá, gostaria de fazer um orçamento.") {
+    const numero = "5561994021018";
+    const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`
+    window.open(url, "_blank");
+}
+
+document.querySelector('#whatssap-header').addEventListener('click', (e) => {
+    e.preventDefault()
+    enviarWhatssapp("Olá, gostaria de mais informações sobre os produtos da Uaimix.")
+})
+
+document.querySelector("#whatssap-button").addEventListener("click", (e) => {
+    e.preventDefault();
+    enviarWhatssapp("Olá, gostaria de mais informações sobre os produtos da Uaimix.")
+});
+
+document.querySelector('.botao-comprar').addEventListener('click', () => {
+    let produto = JSON.parse(localStorage.getItem('produtoSelecionado'))
+    console.log(produto.nome)
+    enviarWhatssapp(`
+    Olá, vi o produto no site da Uaimix e gostaria de mais informações:
+    Produto : ${produto.nome}
+    Código : ${produto.codigo}
+    Categoria : ${produto.categoria}
+    Poderia me enviar preço e condições de pagamento
+    `)
+})
 
 loadCategoryProducts()
 loadProductUnique()

@@ -177,4 +177,20 @@ async function addNewProduct() {
     })
 }
 
+function enviarWhatssapp(mensagem = "Olá, gostaria de fazer um orçamento.") {
+    const numero = "5561994021018";
+    const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`
+    window.open(url, "_blank");
+}
+
+document.querySelector('#whatssap-header').addEventListener('click', (e) => {
+    e.preventDefault()
+    enviarWhatssapp("Olá, gostaria de mais informações sobre os produtos da Uaimix.")
+})
+
+document.querySelector("#whatssap-button").addEventListener("click", (e) => {
+    e.preventDefault();
+    enviarWhatssapp("Olá, gostaria de mais informações sobre os produtos da Uaimix.")
+});
+
 addNewProduct()

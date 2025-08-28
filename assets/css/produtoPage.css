@@ -239,22 +239,29 @@ nav p {
 
 .botao-comprar {
     margin-top: 28px;
-    background: #E53935;
+    background: #23b659;
     color: #fff;
     border: none;
     border-radius: 8px;
     padding: 12px 38px;
-    font-size: 1.15rem;
+    font-size: 175%;
     font-weight: 600;
     cursor: pointer;
     box-shadow: 0 2px 8px rgba(229, 57, 53, 0.08);
     transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
     font-family: 'Segoe UI', Arial, sans-serif;
     letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+}
+
+.botao-comprar img {
+    width: 10%;
+    margin-right: 15%;
 }
 
 .botao-comprar:hover {
-    background: #c9403e;
+    background: #147437;
     box-shadow: 0 4px 16px rgba(229, 57, 53, 0.16);
     transform: translateY(-2px) scale(1.03);
 }
@@ -438,6 +445,11 @@ nav p {
         flex-wrap: wrap;
     }
 
+    .botao-comprar img {
+        width: 15%;
+        margin-right: 15%;
+    }
+
     .footer-logo {
         width: 120px;
     }
@@ -601,8 +613,13 @@ nav p {
 
     .botao-comprar {
         width: 100%;
-        padding: 12px 0;
-        font-size: 1rem;
+        font-size: 1.2rem;
+        width: 85%;
+    }
+
+    .botao-comprar img {
+        width: 10%;
+        margin-right: 15%;
     }
 
     .footer-container {
