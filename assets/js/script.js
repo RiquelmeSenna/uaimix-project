@@ -175,6 +175,75 @@ async function addNewProduct() {
             categoriaDiv.appendChild(productItem)
         })
     })
+
+    setupSearch(products)
+}
+
+function renderProductsList(products, container) {
+    container.innerHTML = "";
+    products.forEach(product => {
+        let productItem = document.createElement('div')
+        productItem.classList.add('produto-item')
+
+        let img = document.createElement('img')
+        img.src = product.imagemUrl
+
+        let h2 = document.createElement('h2')
+        h2.classList.add('produto-nome')
+        h2.innerHTML = product.nome
+
+        let p = document.createElement('p')
+        p.classList.add('produto-codigo')
+        p.innerHTML = `Código: ${product.codigo}`
+
+        let button = document.createElement('button')
+        button.classList.add('produto-comprar')
+        button.innerHTML = 'Comprar'
+
+        button.addEventListener('click', () => {
+            localStorage.setItem('produtoSelecionado', JSON.stringify(product))
+            window.location.href = './html/produtoPage.html'
+        })
+
+        productItem.appendChild(img)
+        productItem.appendChild(h2)
+        productItem.appendChild(p)
+        productItem.appendChild(button)
+
+        container.appendChild(productItem)
+    })
+}
+
+function setupSearch(products) {
+    const input = document.querySelector("#search-input")
+    const button = document.querySelector("#button-search")
+    const productlist = document.querySelector('.produtos-lista')
+
+    function filtrar() {
+        let termo = input.value.trim().toLowerCase()
+        if (termo === "") {
+            // volta 6 produtos aleatórios
+            let aleatorios = shuffleArray(products).slice(0, 6)
+            renderProductsList(aleatorios, productlist)
+            return
+        }
+
+        let filtrados = products.filter(p =>
+            p.nome.toLowerCase().includes(termo) ||
+            p.codigo.toString().includes(termo) ||
+            (p.marca && p.marca.toLowerCase().includes(termo))
+        )
+
+        renderProductsList(filtrados, productlist)
+    }
+
+    // pesquisa enquanto digita
+    input.addEventListener("input", filtrar)
+    // pesquisa no clique do botão
+    button.addEventListener("click", (e) => {
+        e.preventDefault()
+        filtrar()
+    })
 }
 
 function enviarWhatssapp(mensagem = "Olá, gostaria de fazer um orçamento.") {
