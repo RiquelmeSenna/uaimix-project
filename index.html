@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -27,9 +26,27 @@
             <a href="" id="whatssap-header"><img src="./assets/images/whatsapp-svgrepo-com.svg">
                 <p>Contato</p>
             </a>
-            <p>(61) 98377-6360</p>
+            <p id="nav-number">(61) 98377-6360</p>
         </nav>
+        <button id="user-login-btn" title="Login/Cadastro">
+            <img src="./assets/images/user-alt-1-svgrepo-com.svg" alt="Usuário">
+        </button>
     </header>
+    <!-- Modal de Login/Cadastro -->
+    <div id="login-modal" class="modal" style="display:noe;">
+        <div class="modal-content">
+            <span id="close-login-modal" class="close">&times;</span>
+            <h2>Login / Cadastro</h2>
+            <form id="login-form"></form>
+            <input type="text" placeholder="Nome" required>
+            <input type="text" placeholder="CPF ou CNPJ" required>
+            <input type="email" placeholder="Email" required>
+            <input type="password" placeholder="Senha" required>
+            <button type="submit">Entrar</button>
+            <p>Não tem conta? <a href="#">Cadastre-se</a></p>
+            </form>
+        </div>
+    </div>
     <div class="categorias-bar">
         <div class="menu">
             <div class="bars-menu">
