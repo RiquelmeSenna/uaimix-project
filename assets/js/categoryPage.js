@@ -53,7 +53,7 @@ function renderCategoriasNav(categorias) {
 }
 
 async function loadCategoryProducts() {
-    const url = 'https://sheetdb.io/api/v1/ppt72dz0c8neo'
+    const url = 'https://script.google.com/macros/s/AKfycbzXVj2wzMU6XgF7bypB0o8Kwp5NHtfIWr9Jd7RBo1yvB1PyisOY9UoQXU2CSLChGti7kw/exec'
     const response = await fetch(url)
     const products = await response.json()
 

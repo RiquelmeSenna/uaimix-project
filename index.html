@@ -33,7 +33,7 @@
         </button>
     </header>
     <!-- Modal de Login/Cadastro -->
-    <div id="login-modal" class="modal" style="display:noe;">
+    <div id="login-modal" class="modal" style="display:none;">
         <div class="modal-content">
             <span id="close-login-modal" class="close">&times;</span>
             <h2>Login / Cadastro</h2>
@@ -45,6 +45,22 @@
             <button type="submit">Entrar</button>
             <p>Não tem conta? <a href="#">Cadastre-se</a></p>
             </form>
+        </div>
+    </div>
+    <!-- Modal de Cadastro -->
+    <div id="register-modal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <span id="close-register-modal" class="close">&times;</span>
+            <h2>Cadastro</h2>
+            <form id="register-form">
+                <input type="text" placeholder="Nome" required>
+                <input type="text" placeholder="CPF ou CNPJ" required>
+                <input type="email" placeholder="Email" required>
+                <input type="password" placeholder="Senha" required>
+                <input type="password" placeholder="Confirme a Senha" required>
+                <button type="submit">Cadastrar</button>
+            </form>
+            <p>Já tem conta? <a href="#" id="login-link">Entrar</a></p>
         </div>
     </div>
     <div class="categorias-bar">

@@ -67,9 +67,11 @@ function shuffleArray(array) {
 }
 
 async function addNewProduct() {
-    const url = 'https://sheetdb.io/api/v1/ppt72dz0c8neo'
+    const url = 'https://script.google.com/macros/s/AKfycbzXVj2wzMU6XgF7bypB0o8Kwp5NHtfIWr9Jd7RBo1yvB1PyisOY9UoQXU2CSLChGti7kw/exec'
     const response = await fetch(url)
     const products = await response.json()
+
+    console.log(products)
 
     let productlist = document.querySelector('.produtos-lista')
     let productsCategory = document.querySelector('.produtos-categoria')
@@ -263,3 +265,113 @@ document.querySelector("#whatssap-button").addEventListener("click", (e) => {
 });
 
 addNewProduct()
+
+///////////////////////////
+
+
+const btnUserLogin = document.querySelector("#user-login-btn");
+const loginModal = document.querySelector("#login-modal");
+const registerModal = document.querySelector("#register-modal");
+
+const closeLogin = document.querySelector("#close-login-modal");
+const closeRegister = document.querySelector("#close-register-modal");
+const loginLink = document.querySelector("#login-link"); // "Já tem conta? Entrar"
+const registerLink = document.querySelector("#login-modal p a"); // "Não tem conta? Cadastre-se"
+
+// Abrir modal de cadastro ao clicar no ícone de usuário
+btnUserLogin.addEventListener("click", () => {
+    registerModal.style.display = "flex";
+    loginModal.style.display = "none";
+});
+
+// Fechar modais
+closeLogin.addEventListener("click", () => {
+    loginModal.style.display = "none";
+});
+closeRegister.addEventListener("click", () => {
+    registerModal.style.display = "none";
+});
+
+// Trocar de Cadastro → Login
+loginLink.addEventListener("click", (e) => {
+    e.preventDefault();
+    registerModal.style.display = "none";
+    loginModal.style.display = "flex";
+});
+
+// Trocar de Login → Cadastro
+registerLink.addEventListener("click", (e) => {
+    e.preventDefault();
+    loginModal.style.display = "none";
+    registerModal.style.display = "flex";
+});
+
+// Fechar modal clicando fora
+window.addEventListener("click", (e) => {
+    if (e.target === loginModal) loginModal.style.display = "none";
+    if (e.target === registerModal) registerModal.style.display = "none";
+});
+
+const API_URL = "https://script.google.com/macros/s/AKfycbzVuEuOoXxe7CXPRCI6fIIpZ_FIQ9LBpeyMLJCQPHK-VbZMcefXstOi6luzomBhecAMXA/exec"; // coloque a URL do deploy
+
+// --- Cadastro ---
+document.querySelector("#register-form").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const inputs = e.target.querySelectorAll("input");
+    const nome = inputs[0].value;
+    const documento = inputs[1].value;
+    const email = inputs[2].value;
+    const senha = inputs[3].value;
+    const confirmaSenha = inputs[4].value;
+
+    if (senha !== confirmaSenha) {
+        alert("As senhas não coincidem!");
+        return;
+    }
+
+    const resp = await fetch(API_URL, {
+        method: "POST",
+        mode: 'no-cors',
+        body: JSON.stringify({ nome, documento, email, senha }),
+        headers: { "Content-Type": "application/json" }
+    });
+    const data = await resp.json();
+
+    if (data.sucesso) {
+        alert("Cadastro realizado com sucesso!");
+        localStorage.setItem("usuarioLogado", JSON.stringify({ nome, email, id: data.id }));
+        location.reload();
+    } else {
+        alert(data.erro || "Erro no cadastro.");
+    }
+});
+
+// --- Login ---
+document.querySelector("#login-form").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const inputs = e.target.querySelectorAll("input");
+    const email = inputs[2].value;
+    const senha = inputs[3].value;
+
+    const resp = await fetch(`${API_URL}?email=${email}&senha=${senha}`);
+    const data = await resp.json();
+
+    if (data.sucesso) {
+        localStorage.setItem("usuarioLogado", JSON.stringify(data));
+        alert("Login realizado!");
+        location.reload();
+    } else {
+        alert(data.erro);
+    }
+});
+
+// --- Manter usuário logado ---
+window.addEventListener("DOMContentLoaded", () => {
+    const usuario = localStorage.getItem("usuarioLogado");
+    if (usuario) {
+        const user = JSON.parse(usuario);
+        document.querySelector("#user-login-btn img").title = `Olá, ${user.nome}`;
+    }
+});
+
+
