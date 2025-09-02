@@ -77,7 +77,7 @@ async function loadCategoryProducts() {
 }
 
 function enviarWhatssapp(mensagem = "Olá, gostaria de fazer um orçamento.") {
-    const numero = "5561994021018";
+    const numero = "5561983776360";
     const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`
     window.open(url, "_blank");
 }

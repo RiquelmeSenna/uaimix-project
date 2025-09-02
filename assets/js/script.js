@@ -179,6 +179,9 @@ async function addNewProduct() {
     })
 
     setupSearch(products)
+
+    document.querySelector("#loading-screen").style.display = "none";
+
 }
 
 function renderProductsList(products, container) {
@@ -249,7 +252,7 @@ function setupSearch(products) {
 }
 
 function enviarWhatssapp(mensagem = "Olá, gostaria de fazer um orçamento.") {
-    const numero = "5561994021018";
+    const numero = "5561983776360";
     const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`
     window.open(url, "_blank");
 }
@@ -263,6 +266,9 @@ document.querySelector("#whatssap-button").addEventListener("click", (e) => {
     e.preventDefault();
     enviarWhatssapp("Olá, gostaria de mais informações sobre os produtos da Uaimix.")
 });
+
+document.querySelector("#loading-screen").style.display = "flex";
+
 
 addNewProduct()
 
