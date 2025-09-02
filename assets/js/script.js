@@ -6,7 +6,7 @@ let exit = document.querySelector('#exit')
 menuBar.addEventListener('click', () => {
     categoriesBar.style.transform = 'translateX(00%)';
     setTimeout(() => {
-        categoriesBar.style.boxShadow = '140px 0px 0px rgba(0, 0, 0, 0.7)'
+        categoriesBar.style.boxShadow = '226px 0px 0px rgba(0, 0, 0, 0.7)'
     }, 175)
 })
 
@@ -312,7 +312,7 @@ window.addEventListener("click", (e) => {
     if (e.target === registerModal) registerModal.style.display = "none";
 });
 
-const API_URL = "https://script.google.com/macros/s/AKfycbzVuEuOoXxe7CXPRCI6fIIpZ_FIQ9LBpeyMLJCQPHK-VbZMcefXstOi6luzomBhecAMXA/exec"; // coloque a URL do deploy
+const API_URL = "https://script.google.com/macros/s/AKfycbx3pv27lzJcPqD16l6DcWrw8gm4wdqo2_37v97tgfOfd13w1e8esbWnWhiUTmvajr94jQ/exec";
 
 // --- Cadastro ---
 document.querySelector("#register-form").addEventListener("submit", async (e) => {
@@ -329,20 +329,26 @@ document.querySelector("#register-form").addEventListener("submit", async (e) =>
         return;
     }
 
-    const resp = await fetch(API_URL, {
-        method: "POST",
-        mode: 'no-cors',
-        body: JSON.stringify({ nome, documento, email, senha }),
-        headers: { "Content-Type": "application/json" }
-    });
-    const data = await resp.json();
+    try {
+        const resp = await fetch(API_URL, {
+            method: "POST",
+            body: JSON.stringify({ nome, documento, email, senha }),
+            headers: { "Content-Type": "application/json" },
+            mode: "cors"
+        });
 
-    if (data.sucesso) {
-        alert("Cadastro realizado com sucesso!");
-        localStorage.setItem("usuarioLogado", JSON.stringify({ nome, email, id: data.id }));
-        location.reload();
-    } else {
-        alert(data.erro || "Erro no cadastro.");
+        const data = await resp.json();
+        console.log(data)
+
+        if (data.sucesso) {
+            alert("Cadastro realizado com sucesso!");
+            localStorage.setItem("usuarioLogado", JSON.stringify({ nome, email, id: data.id }));
+            location.reload();
+        } else {
+            alert(data.erro || "Erro no cadastro.");
+        }
+    } catch (err) {
+        alert("Erro na conexão: " + err.message);
     }
 });
 
@@ -350,18 +356,26 @@ document.querySelector("#register-form").addEventListener("submit", async (e) =>
 document.querySelector("#login-form").addEventListener("submit", async (e) => {
     e.preventDefault();
     const inputs = e.target.querySelectorAll("input");
-    const email = inputs[2].value;
-    const senha = inputs[3].value;
+    const email = inputs[0].value;
+    const senha = inputs[1].value;
 
-    const resp = await fetch(`${API_URL}?email=${email}&senha=${senha}`);
-    const data = await resp.json();
+    try {
+        const resp = await fetch(`${API_URL}?email=${encodeURIComponent(email)}&senha=${encodeURIComponent(senha)}`, {
+            method: "GET",
+            mode: "cors"
+        });
 
-    if (data.sucesso) {
-        localStorage.setItem("usuarioLogado", JSON.stringify(data));
-        alert("Login realizado!");
-        location.reload();
-    } else {
-        alert(data.erro);
+        const data = await resp.json();
+
+        if (data.sucesso) {
+            localStorage.setItem("usuarioLogado", JSON.stringify(data));
+            alert("Login realizado!");
+            location.reload();
+        } else {
+            alert(data.erro || "Erro no login.");
+        }
+    } catch (err) {
+        alert("Erro na conexão: " + err.message);
     }
 });
 
@@ -373,5 +387,6 @@ window.addEventListener("DOMContentLoaded", () => {
         document.querySelector("#user-login-btn img").title = `Olá, ${user.nome}`;
     }
 });
+
 
 

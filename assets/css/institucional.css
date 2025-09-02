@@ -675,7 +675,7 @@ nav p {
     }
 }
 
-@media (max-width : 600px) {
+@media (max-width : 744px) {
     header {
         display: flex;
         padding: 24px 0px;

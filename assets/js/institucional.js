@@ -5,7 +5,7 @@ let exit = document.querySelector('#exit')
 menuBar.addEventListener('click', () => {
     categoriesBar.style.transform = 'translateX(00%)';
     setTimeout(() => {
-        categoriesBar.style.boxShadow = '140px 0px 0px rgba(0, 0, 0, 0.7)'
+        categoriesBar.style.boxShadow = '226px 0px 0px rgba(0, 0, 0, 0.7)'
     }, 175)
 })
 

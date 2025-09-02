@@ -5,7 +5,7 @@ let exit = document.querySelector('#exit')
 menuBar.addEventListener('click', () => {
     categoriesBar.style.transform = 'translateX(00%)';
     setTimeout(() => {
-        categoriesBar.style.boxShadow = '140px 0px 0px rgba(0, 0, 0, 0.7)'
+        categoriesBar.style.boxShadow = '226px 0px 0px rgba(0, 0, 0, 0.7)'
     }, 175)
 })
 
@@ -204,3 +204,49 @@ document.querySelector("#whatssap-button").addEventListener("click", (e) => {
 });
 
 loadCategoryProducts()
+
+///////////////////////////
+
+
+const btnUserLogin = document.querySelector("#user-login-btn");
+const loginModal = document.querySelector("#login-modal");
+const registerModal = document.querySelector("#register-modal");
+
+const closeLogin = document.querySelector("#close-login-modal");
+const closeRegister = document.querySelector("#close-register-modal");
+const loginLink = document.querySelector("#login-link"); // "Já tem conta? Entrar"
+const registerLink = document.querySelector("#login-modal p a"); // "Não tem conta? Cadastre-se"
+
+// Abrir modal de cadastro ao clicar no ícone de usuário
+btnUserLogin.addEventListener("click", () => {
+    registerModal.style.display = "flex";
+    loginModal.style.display = "none";
+});
+
+// Fechar modais
+closeLogin.addEventListener("click", () => {
+    loginModal.style.display = "none";
+});
+closeRegister.addEventListener("click", () => {
+    registerModal.style.display = "none";
+});
+
+// Trocar de Cadastro → Login
+loginLink.addEventListener("click", (e) => {
+    e.preventDefault();
+    registerModal.style.display = "none";
+    loginModal.style.display = "flex";
+});
+
+// Trocar de Login → Cadastro
+registerLink.addEventListener("click", (e) => {
+    e.preventDefault();
+    loginModal.style.display = "none";
+    registerModal.style.display = "flex";
+});
+
+// Fechar modal clicando fora
+window.addEventListener("click", (e) => {
+    if (e.target === loginModal) loginModal.style.display = "none";
+    if (e.target === registerModal) registerModal.style.display = "none";
+});
