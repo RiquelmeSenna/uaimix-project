@@ -126,3 +126,162 @@ document.querySelector('.botao-comprar').addEventListener('click', () => {
 
 loadCategoryProducts()
 loadProductUnique()
+
+
+///////////////////////////
+
+
+const btnUserLogin = document.querySelector("#user-login-btn");
+const loginModal = document.querySelector("#login-modal");
+const registerModal = document.querySelector("#register-modal");
+
+const closeLogin = document.querySelector("#close-login-modal");
+const closeRegister = document.querySelector("#close-register-modal");
+const loginLink = document.querySelector("#login-link"); // "Já tem conta? Entrar"
+const registerLink = document.querySelector("#login-modal p a"); // "Não tem conta? Cadastre-se"
+
+// Abrir modal de cadastro ao clicar no ícone de usuário
+btnUserLogin.addEventListener("click", () => {
+    registerModal.style.display = "flex";
+    loginModal.style.display = "none";
+});
+
+// Fechar modais
+closeLogin.addEventListener("click", () => {
+    loginModal.style.display = "none";
+});
+closeRegister.addEventListener("click", () => {
+    registerModal.style.display = "none";
+});
+
+// Trocar de Cadastro → Login
+loginLink.addEventListener("click", (e) => {
+    e.preventDefault();
+    registerModal.style.display = "none";
+    loginModal.style.display = "flex";
+});
+
+// Trocar de Login → Cadastro
+registerLink.addEventListener("click", (e) => {
+    e.preventDefault();
+    loginModal.style.display = "none";
+    registerModal.style.display = "flex";
+});
+
+// Fechar modal clicando fora
+window.addEventListener("click", (e) => {
+    if (e.target === loginModal) loginModal.style.display = "none";
+    if (e.target === registerModal) registerModal.style.display = "none";
+});
+
+const API_URL = "http://localhost:3000/user";
+
+// --- Cadastro ---
+document.querySelector("#register-form").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const inputs = e.target.querySelectorAll("input");
+    const nome = inputs[0].value;
+    const documento = inputs[1].value;
+    const email = inputs[2].value;
+    const senha = inputs[3].value;
+    const confirmaSenha = inputs[4].value;
+
+    if (senha !== confirmaSenha) {
+        alert("As senhas não coincidem!");
+        return;
+    }
+
+    try {
+        const resp = await fetch(API_URL, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                name: nome,
+                document: documento,
+                email,
+                password: senha
+            })
+        });
+
+        const data = await resp.json();
+
+        if (resp.ok) {
+            alert("Cadastro realizado com sucesso!");
+            localStorage.setItem("usuarioLogado", JSON.stringify({ nome, email }));
+            location.reload();
+        } else {
+            alert(data.error || "Erro ao cadastrar.");
+        }
+    } catch (err) {
+        console.error(err);
+        alert("Erro na conexão com o servidor.");
+    }
+});
+
+// --- Login ---
+document.querySelector("#login-form").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const inputs = e.target.querySelectorAll("input");
+    const email = inputs[0].value;
+    const senha = inputs[1].value;
+
+    try {
+        const resp = await fetch(`${API_URL}/login`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email, password: senha })
+        });
+
+        const data = await resp.json();
+
+        if (resp.ok && data.token) {
+            alert("Login realizado!");
+            localStorage.setItem("authToken", data.token);
+            localStorage.setItem("usuarioLogado", JSON.stringify({ email }));
+            location.reload();
+        } else {
+            alert(data.error || "Email ou senha incorretos.");
+        }
+    } catch (err) {
+        console.error(err);
+        alert("Erro na conexão com o servidor.");
+    }
+});
+
+// --- Manter usuário logado ---
+window.addEventListener("DOMContentLoaded", () => {
+    const usuario = localStorage.getItem("usuarioLogado");
+    if (usuario) {
+        const user = JSON.parse(usuario);
+        document.querySelector("#user-login-btn img").title = `Olá, ${user.nome || user.email}`;
+    }
+});
+
+// --- Manter usuário logado ---
+window.addEventListener("DOMContentLoaded", () => {
+    const usuario = localStorage.getItem("usuarioLogado");
+    if (usuario) {
+        const user = JSON.parse(usuario);
+        const header = document.querySelector("header nav");
+
+        // Remove o botão original
+        const oldBtn = document.querySelector("#user-login-btn");
+        if (oldBtn) oldBtn.remove();
+
+        // Cria a área de usuário
+        const userArea = document.createElement("div");
+        userArea.classList.add("user-area");
+        userArea.innerHTML = `
+            <span class="user-name">Olá, <strong>${user.name || "Usuário"}</strong></span>
+            <button id="logout-btn" class="logout-btn">Sair</button>
+        `;
+
+        header.appendChild(userArea);
+
+        // Logout
+        document.querySelector("#logout-btn").addEventListener("click", () => {
+            localStorage.removeItem("usuarioLogado");
+            location.reload();
+        });
+    }
+});

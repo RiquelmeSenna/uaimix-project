@@ -13,11 +13,25 @@ body {
 header {
     display: flex;
     align-items: center;
-    padding: 24px 40px;
+    justify-content: space-between;
+    /* distribui bem */
+    padding: 16px 24px;
     background: #fff;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
     border-radius: 0 0 16px 16px;
     margin-bottom: 5px;
+    flex-wrap: wrap;
+    /* permite adaptação */
+    gap: 10px;
+}
+
+header .inputs {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 600px;
+    min-width: 280px;
 }
 
 .bars {
@@ -79,6 +93,41 @@ header div {
     justify-content: center;
 }
 
+.user-name {
+    color: #222;
+    font-size: 15px;
+}
+
+.user-area {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    color: #333;
+    font-weight: 500;
+    white-space: nowrap;
+    /* impede quebra do Olá + nome */
+}
+
+.logout-btn {
+    background: #e63946;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    color: white;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    white-space: nowrap;
+    /* mantém "Sair" sem quebrar */
+}
+
+.logout-btn:hover {
+    background: #d62828;
+}
+
+
 #button-search img {
     width: 40%;
 }
@@ -90,8 +139,15 @@ header div {
 nav {
     display: flex;
     align-items: center;
-    gap: 18px;
-    margin-left: 3px;
+    gap: 12px;
+    white-space: nowrap;
+    /* impede quebra do texto */
+}
+
+#nav-number {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #333;
 }
 
 #whatssap-header {
@@ -549,7 +605,7 @@ nav p {
 
     #nav-number {
         min-width: 102px;
-        margin-left: -15px;
+        margin-left: 5px;
     }
 
     header a img {
@@ -597,6 +653,10 @@ nav p {
         margin-left: 0px;
         padding: 30px 60px;
         display: flex;
+    }
+
+    nav {
+        margin-left: 60px;
     }
 
     header a img {

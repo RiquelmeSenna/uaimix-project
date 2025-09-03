@@ -48,11 +48,25 @@ body {
 header {
     display: flex;
     align-items: center;
-    padding: 24px 40px;
+    justify-content: space-between;
+    /* distribui bem */
+    padding: 16px 24px;
     background: #fff;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
     border-radius: 0 0 16px 16px;
     margin-bottom: 5px;
+    flex-wrap: wrap;
+    /* permite adaptação */
+    gap: 10px;
+}
+
+header .inputs {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 600px;
+    min-width: 280px;
 }
 
 .bars {
@@ -95,6 +109,49 @@ header div {
     border-color: #E53935;
 }
 
+.user-area {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 14px;
+    color: #333;
+    font-weight: 500;
+}
+
+.user-name {
+    color: #222;
+    font-size: 15px;
+}
+
+.logout-btn {
+    background: #e63946;
+    border: none;
+    padding: 6px 14px;
+    border-radius: 6px;
+    color: white;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.logout-btn:hover {
+    background: #d62828;
+}
+
+.aviso-login {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 18px;
+    border-radius: 8px;
+    background: #eee;
+    color: #333;
+    font-weight: 600;
+    text-align: center;
+}
+
+
+
 #button-search {
     padding: 0 5px;
     background: #E53935;
@@ -125,8 +182,40 @@ header div {
 nav {
     display: flex;
     align-items: center;
-    gap: 18px;
-    margin-left: 3px;
+    gap: 12px;
+    white-space: nowrap;
+    /* impede quebra do texto */
+}
+
+#nav-number {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.user-area {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    color: #333;
+    font-weight: 500;
+    white-space: nowrap;
+    /* impede quebra do Olá + nome */
+}
+
+.logout-btn {
+    background: #e63946;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    color: white;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    white-space: nowrap;
+    /* mantém "Sair" sem quebrar */
 }
 
 #whatssap-header {
@@ -560,12 +649,12 @@ nav p {
     }
 
     nav {
-        margin-left: 10px;
+        margin-left: 0px;
     }
 
     #nav-number {
         min-width: 102px;
-        margin-left: -15px;
+        margin-left: 15px;
     }
 
     header a img {
@@ -607,17 +696,18 @@ nav p {
 
     header {
         margin-left: 0px;
-        padding: 30px 60px;
+        padding: 30px 120px;
         display: flex;
     }
 
     header a img {
-        margin-left: -60px;
+        margin-left: 5px;
     }
 
     #search-input {
         margin-left: 40px;
     }
+
 
     #button-search {
         margin-right: 50px;
@@ -627,12 +717,10 @@ nav p {
         height: 38px;
         width: 38px;
         padding: 6px;
-
-
     }
 
-    nav p {
-        font-size: 10px;
+    nav {
+        margin-left: 60px;
     }
 
     #user-login-btn img {

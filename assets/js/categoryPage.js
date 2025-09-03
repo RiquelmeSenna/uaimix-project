@@ -101,20 +101,15 @@ async function loadCategoryProducts() {
         let p = document.createElement('p')
         p.innerHTML = `Código: ${product.codigo}`
 
-        let button = document.createElement('button')
-        button.classList.add('buy-button')
-        button.innerHTML = 'Comprar'
+        const compraEl = criarElementoCompra(product);
+        productItem.appendChild(compraEl);
 
-        button.addEventListener('click', () => {
-            localStorage.setItem('produtoSelecionado', JSON.stringify(product))
-            window.location.href = './produtoPage.html'
-        })
 
         productItem.appendChild(img)
         productItem.appendChild(h3)
         productItem.appendChild(pBrand)
         productItem.appendChild(p)
-        productItem.appendChild(button)
+        productItem.appendChild(compraEl)
 
         productlist.appendChild(productItem)
     })
@@ -144,20 +139,15 @@ function renderCategoryProducts(products, container) {
         let p = document.createElement('p')
         p.innerHTML = `Código: ${product.codigo}`
 
-        let button = document.createElement('button')
-        button.classList.add('buy-button')
-        button.innerHTML = 'Comprar'
+        const compraEl = criarElementoCompra(product);
+        productItem.appendChild(compraEl);
 
-        button.addEventListener('click', () => {
-            localStorage.setItem('produtoSelecionado', JSON.stringify(product))
-            window.location.href = './produtoPage.html'
-        })
 
         productItem.appendChild(img)
         productItem.appendChild(h3)
         productItem.appendChild(pBrand)
         productItem.appendChild(p)
-        productItem.appendChild(button)
+        productItem.appendChild(compraEl)
 
         container.appendChild(productItem)
     })
@@ -256,3 +246,137 @@ window.addEventListener("click", (e) => {
     if (e.target === loginModal) loginModal.style.display = "none";
     if (e.target === registerModal) registerModal.style.display = "none";
 });
+
+const API_URL = "http://localhost:3000/user";
+
+// --- Cadastro ---
+document.querySelector("#register-form").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const inputs = e.target.querySelectorAll("input");
+    const nome = inputs[0].value;
+    const documento = inputs[1].value;
+    const email = inputs[2].value;
+    const senha = inputs[3].value;
+    const confirmaSenha = inputs[4].value;
+
+    if (senha !== confirmaSenha) {
+        alert("As senhas não coincidem!");
+        return;
+    }
+
+    try {
+        const resp = await fetch(API_URL, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                name: nome,
+                document: documento,
+                email,
+                password: senha
+            })
+        });
+
+        const data = await resp.json();
+
+        if (resp.ok) {
+            alert("Cadastro realizado com sucesso!");
+            localStorage.setItem("usuarioLogado", JSON.stringify({ nome, email }));
+            location.reload();
+        } else {
+            alert(data.error || "Erro ao cadastrar.");
+        }
+    } catch (err) {
+        console.error(err);
+        alert("Erro na conexão com o servidor.");
+    }
+});
+
+// --- Login ---
+document.querySelector("#login-form").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const inputs = e.target.querySelectorAll("input");
+    const email = inputs[0].value;
+    const senha = inputs[1].value;
+
+    try {
+        const resp = await fetch(`${API_URL}/login`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email, password: senha })
+        });
+
+        const data = await resp.json();
+
+        if (resp.ok && data.token) {
+            alert("Login realizado!");
+            localStorage.setItem("authToken", data.token);
+            localStorage.setItem("usuarioLogado", JSON.stringify({ email }));
+            location.reload();
+        } else {
+            alert(data.error || "Email ou senha incorretos.");
+        }
+    } catch (err) {
+        console.error(err);
+        alert("Erro na conexão com o servidor.");
+    }
+});
+
+// --- Manter usuário logado ---
+window.addEventListener("DOMContentLoaded", () => {
+    const usuario = localStorage.getItem("usuarioLogado");
+    if (usuario) {
+        const user = JSON.parse(usuario);
+        document.querySelector("#user-login-btn img").title = `Olá, ${user.nome || user.email}`;
+    }
+});
+
+// --- Manter usuário logado ---
+window.addEventListener("DOMContentLoaded", () => {
+    const usuario = localStorage.getItem("usuarioLogado");
+    if (usuario) {
+        const user = JSON.parse(usuario);
+        const header = document.querySelector("header nav");
+
+        // Remove o botão original
+        const oldBtn = document.querySelector("#user-login-btn");
+        if (oldBtn) oldBtn.remove();
+
+        // Cria a área de usuário
+        const userArea = document.createElement("div");
+        userArea.classList.add("user-area");
+        userArea.innerHTML = `
+            <span class="user-name">Olá, <strong>${user.name || "Usuário"}</strong></span>
+            <button id="logout-btn" class="logout-btn">Sair</button>
+        `;
+
+        header.appendChild(userArea);
+
+        // Logout
+        document.querySelector("#logout-btn").addEventListener("click", () => {
+            localStorage.removeItem("usuarioLogado");
+            location.reload();
+        });
+    }
+});
+
+function criarElementoCompra(product) {
+    const usuario = localStorage.getItem("usuarioLogado");
+
+    if (usuario) {
+        // Logado: mostra o botão normal
+        const btn = document.createElement("button");
+        btn.className = "produto-comprar";
+        btn.textContent = "Comprar";
+        btn.addEventListener("click", () => {
+            localStorage.setItem("produtoSelecionado", JSON.stringify(product));
+            window.location.href = "./html/produtoPage.html";
+        });
+        return btn;
+    }
+
+    // NÃO logado: mostra apenas a mensagem (sem botão)
+    const aviso = document.createElement("p");
+    aviso.className = "aviso-login";
+    aviso.textContent = "Faça login para comprar";
+    return aviso;
+}

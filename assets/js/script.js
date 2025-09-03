@@ -122,18 +122,13 @@ async function addNewProduct() {
         p.classList.add('produto-codigo')
         p.innerHTML = `Código: ${product.codigo}`
 
-        let button = document.createElement('button')
-        button.classList.add('produto-comprar')
-        button.innerHTML = 'Comprar'
+        const compraEl = criarElementoCompra(product);
+        productItem.appendChild(compraEl);
 
-        button.addEventListener('click', () => {
-            localStorage.setItem('produtoSelecionado', JSON.stringify(product))
-            window.location.href = './html/produtoPage.html'
-        })
         productItem.appendChild(img)
         productItem.appendChild(h2)
         productItem.appendChild(p)
-        productItem.appendChild(button)
+        productItem.appendChild(compraEl)
 
         productlist.appendChild(productItem)
 
@@ -160,19 +155,14 @@ async function addNewProduct() {
             p.classList.add('produto-codigo')
             p.innerHTML = `Código: ${product.codigo}`
 
-            let button = document.createElement('button')
-            button.classList.add('produto-comprar')
-            button.innerHTML = 'Comprar'
+            const compraEl = criarElementoCompra(product);
+            productItem.appendChild(compraEl);
 
-            button.addEventListener('click', () => {
-                localStorage.setItem('produtoSelecionado', JSON.stringify(product))
-                window.location.href = './html/produtoPage.html'
-            })
 
             productItem.appendChild(img)
             productItem.appendChild(h2)
             productItem.appendChild(p)
-            productItem.appendChild(button)
+            productItem.appendChild(compraEl)
 
             categoriaDiv.appendChild(productItem)
         })
@@ -201,19 +191,14 @@ function renderProductsList(products, container) {
         p.classList.add('produto-codigo')
         p.innerHTML = `Código: ${product.codigo}`
 
-        let button = document.createElement('button')
-        button.classList.add('produto-comprar')
-        button.innerHTML = 'Comprar'
+        const compraEl = criarElementoCompra(product);
+        productItem.appendChild(compraEl);
 
-        button.addEventListener('click', () => {
-            localStorage.setItem('produtoSelecionado', JSON.stringify(product))
-            window.location.href = './html/produtoPage.html'
-        })
 
         productItem.appendChild(img)
         productItem.appendChild(h2)
         productItem.appendChild(p)
-        productItem.appendChild(button)
+        productItem.appendChild(compraEl)
 
         container.appendChild(productItem)
     })
@@ -318,7 +303,7 @@ window.addEventListener("click", (e) => {
     if (e.target === registerModal) registerModal.style.display = "none";
 });
 
-const API_URL = "https://script.google.com/macros/s/AKfycbx3pv27lzJcPqD16l6DcWrw8gm4wdqo2_37v97tgfOfd13w1e8esbWnWhiUTmvajr94jQ/exec";
+const API_URL = "http://localhost:3000/user";
 
 // --- Cadastro ---
 document.querySelector("#register-form").addEventListener("submit", async (e) => {
@@ -338,23 +323,27 @@ document.querySelector("#register-form").addEventListener("submit", async (e) =>
     try {
         const resp = await fetch(API_URL, {
             method: "POST",
-            body: JSON.stringify({ nome, documento, email, senha }),
             headers: { "Content-Type": "application/json" },
-            mode: "cors"
+            body: JSON.stringify({
+                name: nome,
+                document: documento,
+                email,
+                password: senha
+            })
         });
 
         const data = await resp.json();
-        console.log(data)
 
-        if (data.sucesso) {
+        if (resp.ok) {
             alert("Cadastro realizado com sucesso!");
-            localStorage.setItem("usuarioLogado", JSON.stringify({ nome, email, id: data.id }));
+            localStorage.setItem("usuarioLogado", JSON.stringify({ nome, email }));
             location.reload();
         } else {
-            alert(data.erro || "Erro no cadastro.");
+            alert(data.error || "Erro ao cadastrar.");
         }
     } catch (err) {
-        alert("Erro na conexão: " + err.message);
+        console.error(err);
+        alert("Erro na conexão com o servidor.");
     }
 });
 
@@ -366,22 +355,25 @@ document.querySelector("#login-form").addEventListener("submit", async (e) => {
     const senha = inputs[1].value;
 
     try {
-        const resp = await fetch(`${API_URL}?email=${encodeURIComponent(email)}&senha=${encodeURIComponent(senha)}`, {
-            method: "GET",
-            mode: "cors"
+        const resp = await fetch(`${API_URL}/login`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email, password: senha })
         });
 
         const data = await resp.json();
 
-        if (data.sucesso) {
-            localStorage.setItem("usuarioLogado", JSON.stringify(data));
+        if (resp.ok && data.token) {
             alert("Login realizado!");
+            localStorage.setItem("authToken", data.token);
+            localStorage.setItem("usuarioLogado", JSON.stringify({ email }));
             location.reload();
         } else {
-            alert(data.erro || "Erro no login.");
+            alert(data.error || "Email ou senha incorretos.");
         }
     } catch (err) {
-        alert("Erro na conexão: " + err.message);
+        console.error(err);
+        alert("Erro na conexão com o servidor.");
     }
 });
 
@@ -390,9 +382,62 @@ window.addEventListener("DOMContentLoaded", () => {
     const usuario = localStorage.getItem("usuarioLogado");
     if (usuario) {
         const user = JSON.parse(usuario);
-        document.querySelector("#user-login-btn img").title = `Olá, ${user.nome}`;
+        document.querySelector("#user-login-btn img").title = `Olá, ${user.nome || user.email}`;
     }
 });
+
+// --- Manter usuário logado ---
+window.addEventListener("DOMContentLoaded", () => {
+    const usuario = localStorage.getItem("usuarioLogado");
+    if (usuario) {
+        const user = JSON.parse(usuario);
+        const header = document.querySelector("header nav");
+
+        // Remove o botão original
+        const oldBtn = document.querySelector("#user-login-btn");
+        if (oldBtn) oldBtn.remove();
+
+        // Cria a área de usuário
+        const userArea = document.createElement("div");
+        userArea.classList.add("user-area");
+        userArea.innerHTML = `
+            <button id="logout-btn" class="logout-btn">Sair</button>
+        `;
+
+        header.appendChild(userArea);
+
+        // Logout
+        document.querySelector("#logout-btn").addEventListener("click", () => {
+            localStorage.removeItem("usuarioLogado");
+            location.reload();
+        });
+    }
+});
+
+
+function criarElementoCompra(product) {
+    const usuario = localStorage.getItem("usuarioLogado");
+
+    if (usuario) {
+        // Logado: mostra o botão normal
+        const btn = document.createElement("button");
+        btn.className = "produto-comprar";
+        btn.textContent = "Comprar";
+        btn.addEventListener("click", () => {
+            localStorage.setItem("produtoSelecionado", JSON.stringify(product));
+            window.location.href = "./html/produtoPage.html";
+        });
+        return btn;
+    }
+
+    // NÃO logado: mostra apenas a mensagem (sem botão)
+    const aviso = document.createElement("p");
+    aviso.className = "aviso-login";
+    aviso.textContent = "Faça login para comprar";
+    return aviso;
+}
+
+
 
 
 
