@@ -79,41 +79,6 @@ async function loadCategoryProducts() {
     renderCategoryProducts(produtosDaCategoria, productlist)
     setupCategorySearch(produtosDaCategoria, productlist)
 
-
-
-    produtosDaCategoria.forEach(product => {
-        let Title = document.querySelector('.category-header h2').innerHTML = product.categoria
-
-        let productItem = document.createElement('div')
-        productItem.classList.add('product-card')
-
-        let img = document.createElement('img')
-        img.src = product.imagemUrl
-
-        let h3 = document.createElement('h3')
-        h3.innerHTML = product.nome
-
-        let pBrand = document.createElement('p')
-        pBrand.classList.add('brand')
-        pBrand.innerHTML = `Marca: ${product.marca}`
-
-        console.log(product)
-        let p = document.createElement('p')
-        p.innerHTML = `Código: ${product.codigo}`
-
-        const compraEl = criarElementoCompra(product);
-        productItem.appendChild(compraEl);
-
-
-        productItem.appendChild(img)
-        productItem.appendChild(h3)
-        productItem.appendChild(pBrand)
-        productItem.appendChild(p)
-        productItem.appendChild(compraEl)
-
-        productlist.appendChild(productItem)
-    })
-
     // Esconde o loading
     document.querySelector("#loading-screen").style.display = "none";
 
@@ -247,7 +212,7 @@ window.addEventListener("click", (e) => {
     if (e.target === registerModal) registerModal.style.display = "none";
 });
 
-const API_URL = "http://localhost:3000/user";
+const API_URL = "https://uaimix-backend.onrender.com/user";
 
 // --- Cadastro ---
 document.querySelector("#register-form").addEventListener("submit", async (e) => {

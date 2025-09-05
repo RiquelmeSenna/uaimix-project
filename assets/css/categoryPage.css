@@ -150,8 +150,6 @@ header div {
     text-align: center;
 }
 
-
-
 #button-search {
     padding: 0 5px;
     background: #E53935;
@@ -489,6 +487,7 @@ nav p {
     align-items: center;
     transition: box-shadow 0.2s, transform 0.2s;
     min-height: 340px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 .product-card:hover {
@@ -521,23 +520,25 @@ nav p {
     text-align: center;
 }
 
-.buy-button {
-    background-color: #E53935;
+.produto-comprar {
+    background: #E53935;
     color: #fff;
     border: none;
     border-radius: 8px;
-    padding: 10px 24px;
+    padding: 10px 28px;
     font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
-    transition: background 0.2s, transform 0.2s;
-    margin-top: 12px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+    position: absolute;
+    transition: background 0.2s, box-shadow 0.2s;
+    box-shadow: 0 2px 8px rgba(229, 57, 53, 0.08);
+    font-family: 'Segoe UI', Arial, sans-serif;
+    margin-top: 255px;
 }
 
-.buy-button:hover {
-    background-color: #c9403e;
-    transform: scale(1.04);
+.produto-comprar:hover {
+    background: #c9403e;
+    box-shadow: 0 4px 16px rgba(229, 57, 53, 0.16);
 }
 
 .footer {
@@ -738,13 +739,21 @@ nav p {
     }
 
     .products-list {
-        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-        gap: 18px;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
     }
+
 
     .product-card {
         padding: 16px 8px;
-        min-height: 260px;
+        min-height: 320px;
+        max-width: 220px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .produto-comprar {
+        margin-top: 245px;
     }
 
     .product-card img {
@@ -932,13 +941,24 @@ nav p {
     }
 
     .product-card {
-        min-height: 180px;
+        min-height: 250px;
+        min-width: 100%;
         padding: 12px 4px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .produto-comprar {
+        font-size: 0.9rem;
+        margin-top: 250px;
     }
 
     .product-card img {
         width: 70px;
         height: 70px;
+    }
+
+    .produto-comprar {
+        margin-top: 180px;
     }
 
     .category-header h2 {
@@ -1020,6 +1040,10 @@ nav p {
     .menu p {
         margin-left: -40%;
         font-size: 20px;
+    }
+
+    .produto-comprar {
+        font-size: 0.7rem;
     }
 
     #search-input {

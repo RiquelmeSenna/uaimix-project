@@ -174,7 +174,7 @@ window.addEventListener("click", (e) => {
     if (e.target === registerModal) registerModal.style.display = "none";
 });
 
-const API_URL = "http://localhost:3000/user";
+const API_URL = "https://uaimix-backend.onrender.com/user";
 
 // --- Cadastro ---
 document.querySelector("#register-form").addEventListener("submit", async (e) => {
